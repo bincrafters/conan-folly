@@ -31,6 +31,7 @@ class FollyConan(ConanFile):
         "zstd/1.3.3@bincrafters/stable",
         "lz4/1.8.0@bincrafters/stable",
         "boost_thread/1.66.0@bincrafters/stable",
+        "cmake_findboost_modular/1.66.0@bincrafters/stable",
         "libevent/2.0.22@bincrafters/stable"
     )
     
