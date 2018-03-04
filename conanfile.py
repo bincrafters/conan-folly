@@ -43,8 +43,14 @@ class FollyConan(ConanFile):
         os.rename(extracted_dir, self.source_subfolder)
 
     def _configure_cmake(self):
+        # folly uses its own finder for libevent but finds library only by 'event' name
+        tools.replace_in_file(os.path.join(self.source_subfolder, "CMake", "FindLibEvent.cmake"),
+                'find_library(LIBEVENT_LIB NAMES event PATHS ${LibEvent_LIB_PATHS})',
+                'find_library(LIBEVENT_LIB NAMES event libevent PATHS ${LibEvent_LIB_PATHS})')
         cmake = CMake(self)
         cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
+        # add conan path for libevent finder
+        cmake.definitions["LibEvent_LIB_PATHS"] = self.deps_cpp_info['libevent'].rootpath
         cmake.configure()
         return cmake
         
