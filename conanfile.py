@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from conans import ConanFile, CMake, tools
+from conans.errors import ConanInvalidConfiguration
 import os
 
 
@@ -33,6 +34,16 @@ class FollyConan(ConanFile):
     )
     source_subfolder = "source_subfolder"
     build_folder = "build_folder"
+
+    def config_options(self):
+        if self.settings.os == "Windows":
+            self.options.remove("fPIC")
+
+    def configure(self):
+        if self.settings.os == "Windows" and \
+           self.settings.compiler == "Visual Studio" and \
+           float(self.settings.compiler.version.value) < 14:
+            raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
     
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.release))
