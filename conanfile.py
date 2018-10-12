@@ -8,7 +8,7 @@ import os
 class FollyConan(ConanFile):
     name = "folly"
     version = "0.58.0"
-    release = "2018.10.08.00" # check contained cmakelists for version number
+    release = "2018.10.08.00"
     description = "An open-source C++ library developed and used at Facebook"
     url = "https://github.com/bincrafters/conan-folly"
     homepage = "https://github.com/facebook/folly"
@@ -16,7 +16,7 @@ class FollyConan(ConanFile):
     license = "Apache 2.0"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = ("shared=False", "fPIC=True")
+    default_options = {"shared": False, "fPIC": True}
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt", "folly.patch"]
     generators = "cmake"
@@ -41,7 +41,7 @@ class FollyConan(ConanFile):
         
     def _configure_cmake(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(build_folder=self.build_folder)
         return cmake
         
     def build(self):
