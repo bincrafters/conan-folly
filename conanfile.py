@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from conans import ConanFile, CMake, tools
+from conans.model.version import Version
 from conans.errors import ConanInvalidConfiguration
 import os
 
 
 class FollyConan(ConanFile):
     name = "folly"
-    version = "0.58.0"
-    release = "2018.10.08.00"
+    version = "2018.10.15.00"
     description = "An open-source C++ library developed and used at Facebook"
     url = "https://github.com/bincrafters/conan-folly"
     homepage = "https://github.com/facebook/folly"
@@ -41,12 +41,12 @@ class FollyConan(ConanFile):
     def configure(self):
         if self.settings.os == "Windows" and \
            self.settings.compiler == "Visual Studio" and \
-           float(self.settings.compiler.version.value) < 14:
+           Version(self.settings.compiler.version.value) < "14":
             raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
     
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.release))
-        extracted_dir = self.name + "-" + self.release
+        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
+        extracted_dir = self.name + '-' + self.version
         os.rename(extracted_dir, self._source_subfolder)
         
     def _configure_cmake(self):
