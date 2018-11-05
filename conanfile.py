@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 from conans import ConanFile, CMake, tools
 from conans.model.version import Version
 from conans.errors import ConanInvalidConfiguration
-import os
 
 
 class FollyConan(ConanFile):
@@ -22,7 +22,7 @@ class FollyConan(ConanFile):
     exports_sources = ["CMakeLists.txt", "folly.patch"]
     generators = "cmake"
     requires = (
-        "boost/1.68.0@conan/stable",
+        "boost/1.67.0@conan/stable",
         "double-conversion/3.1.1@bincrafters/stable",
         "gflags/2.2.1@bincrafters/stable",
         "glog/0.3.5@bincrafters/stable",
@@ -30,7 +30,7 @@ class FollyConan(ConanFile):
         "lz4/1.8.3@bincrafters/stable",
         "OpenSSL/1.0.2o@conan/stable",
         "zlib/1.2.11@conan/stable",
-        "zstd/1.3.5@bincrafters/stable",
+        "zstd/1.3.5@bincrafters/stable"
     )
     _source_subfolder = "source_subfolder"
 
@@ -43,7 +43,7 @@ class FollyConan(ConanFile):
            self.settings.compiler == "Visual Studio" and \
            Version(self.settings.compiler.version.value) < "14":
             raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
-    
+
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
         extracted_dir = self.name + '-' + self.version
