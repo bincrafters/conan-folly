@@ -27,18 +27,18 @@ index eca43a4..29836ff 100644
  if (LIBEVENT_LIB AND LIBEVENT_INCLUDE_DIR)
    set(LibEvent_FOUND TRUE)
 diff --git a/CMake/FollyCompilerUnix.cmake b/CMake/FollyCompilerUnix.cmake
-index b7d994b..9d66a4c 100644
+index 245bbe9..26d8729 100644
 --- a/CMake/FollyCompilerUnix.cmake
 +++ b/CMake/FollyCompilerUnix.cmake
-@@ -12,11 +12,9 @@ function(apply_folly_compile_options_to_target THETARGET)
+@@ -28,11 +28,9 @@ function(apply_folly_compile_options_to_target THETARGET)
    )
    target_compile_options(${THETARGET}
      PRIVATE
 -      -g
-       -std=gnu++14
+       -std=${CXX_STD}
        -finput-charset=UTF-8
        -fsigned-char
 -      -Werror
        -Wall
        -Wno-deprecated
-       -Wdeprecated-declarations
+       -Wno-deprecated-declarations

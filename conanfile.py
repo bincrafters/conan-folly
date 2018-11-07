@@ -9,7 +9,7 @@ from conans.errors import ConanInvalidConfiguration
 
 class FollyConan(ConanFile):
     name = "folly"
-    version = "2018.10.15.00"
+    version = "2018.11.05.00"
     description = "An open-source C++ library developed and used at Facebook"
     url = "https://github.com/bincrafters/conan-folly"
     homepage = "https://github.com/facebook/folly"
