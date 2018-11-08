@@ -39,10 +39,20 @@ class FollyConan(ConanFile):
             self.options.remove("fPIC")
 
     def configure(self):
+        # INFO: Folly requires C++17
+        compiler_version = Version(self.settings.compiler.version.value)
         if self.settings.os == "Windows" and \
-           self.settings.compiler == "Visual Studio" and \
-           Version(self.settings.compiler.version.value) < "14":
+            self.settings.compiler == "Visual Studio" and \
+            compiler_version < "14":
             raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
+        elif self.settings.os == "Linux" and \
+            self.settings.compiler == "clang" and \
+            compiler_version < "6.0":
+            raise ConanInvalidConfiguration("Folly could not be built by Clang < 6.0")
+        elif self.settings.os == "Linux" and \
+            self.settings.compiler == "gcc" and \
+            compiler_version < "5":
+            raise ConanInvalidConfiguration("Folly could not be built by GCC < 5")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
