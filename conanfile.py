@@ -15,6 +15,7 @@ class FollyConan(ConanFile):
     homepage = "https://github.com/facebook/folly"
     author = "Bincrafters <bincrafters@gmail.com>"
     license = "Apache-2.0"
+    topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}

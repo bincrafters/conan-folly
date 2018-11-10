@@ -18,6 +18,19 @@ index b48157b..f31dc14 100644
  
  INCLUDE(SelectLibraryConfigurations)
  SELECT_LIBRARY_CONFIGURATIONS(LIBGFLAGS)
+diff --git a/CMake/FindGLog.cmake b/CMake/FindGLog.cmake
+index 4338159..d84ef50 100644
+--- a/CMake/FindGLog.cmake
++++ b/CMake/FindGLog.cmake
+@@ -13,7 +13,7 @@ ENDIF ()
+ 
+ FIND_PATH(LIBGLOG_INCLUDE_DIR glog/logging.h)
+ 
+-FIND_LIBRARY(LIBGLOG_LIBRARY glog)
++FIND_LIBRARY(LIBGLOG_LIBRARY glog glogd PATHS ${CONAN_GLOG_ROOT})
+ 
+ # handle the QUIETLY and REQUIRED arguments and set LIBGLOG_FOUND to TRUE if
+ # all listed variables are TRUE
 diff --git a/CMake/FindLibEvent.cmake b/CMake/FindLibEvent.cmake
 index eca43a4..29836ff 100644
 --- a/CMake/FindLibEvent.cmake
