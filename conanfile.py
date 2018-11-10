@@ -10,12 +10,12 @@ from conans.errors import ConanInvalidConfiguration
 class FollyConan(ConanFile):
     name = "folly"
     version = "2018.11.05.00"
-    description = "An open-source C++ library developed and used at Facebook"
+    description = "An open-source C++ components library developed and used at Facebook"
+    topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     url = "https://github.com/bincrafters/conan-folly"
     homepage = "https://github.com/facebook/folly"
     author = "Bincrafters <bincrafters@gmail.com>"
     license = "Apache-2.0"
-    topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
@@ -29,7 +29,7 @@ class FollyConan(ConanFile):
         "glog/20181109@bincrafters/stable",
         "libevent/2.1.8@bincrafters/stable",
         "lz4/1.8.3@bincrafters/stable",
-        "OpenSSL/1.0.2o@conan/stable",
+        "OpenSSL/1.0.2p@conan/stable",
         "zlib/1.2.11@conan/stable",
         "zstd/1.3.5@bincrafters/stable"
     )
@@ -62,12 +62,12 @@ class FollyConan(ConanFile):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
         extracted_dir = self.name + '-' + self.version
         os.rename(extracted_dir, self._source_subfolder)
-        
+
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.configure()
         return cmake
-        
+
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
         cmake = self._configure_cmake()
