@@ -39,6 +39,8 @@ class FollyConan(ConanFile):
         if self.settings.os == "Windows":
             del self.options.fPIC
             del self.options.shared
+        elif self.settings.os == "Macos":
+            del self.options.shared
 
     def configure(self):
         # INFO: Folly is very limited on Windows
