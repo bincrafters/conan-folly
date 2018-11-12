@@ -73,10 +73,10 @@ index 245bbe9..d88cfd9 100644
        -Wno-deprecated
        -Wno-deprecated-declarations
 diff --git a/folly/CachelinePadded.h b/folly/CachelinePadded.h
-index d706b18..5f7a1be 100644
+index cd4b4a6..2226b86 100644
 --- a/folly/CachelinePadded.h
 +++ b/folly/CachelinePadded.h
-@@ -32,9 +32,6 @@ namespace folly {
+@@ -35,9 +35,6 @@ namespace folly {
   */
  template <typename T>
  class CachelinePadded {
