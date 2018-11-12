@@ -9,7 +9,7 @@ from conans.errors import ConanInvalidConfiguration
 
 class FollyConan(ConanFile):
     name = "folly"
-    version = "2018.11.05.00"
+    version = "2018.11.12.00"
     description = "An open-source C++ components library developed and used at Facebook"
     topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     url = "https://github.com/bincrafters/conan-folly"
@@ -64,8 +64,8 @@ class FollyConan(ConanFile):
             raise ConanInvalidConfiguration("Folly could not be built by GCC < 5")
         elif self.settings.os == "Macos" and \
              self.settings.compiler == "apple-clang" and \
-             compiler_version < "9.0":
-            raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 9.0")
+             compiler_version < "8.0":
+            raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
