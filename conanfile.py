@@ -47,7 +47,7 @@ class FollyConan(ConanFile):
         compiler_version = Version(self.settings.compiler.version.value)
         if self.settings.os == "Windows" and \
             self.settings.compiler == "Visual Studio" and \
-            compiler_version < "14":
+            compiler_version < "15":
             raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
         elif self.settings.os == "Windows" and \
             self.settings.arch != "x86_64":
