@@ -93,5 +93,5 @@ class FollyConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
         if self.settings.os == "Linux":
             self.cpp_info.libs.extend(["pthread", "dl"])
-        elif not self.options.shared and self.settings.compiler == "Visual Studio":
+        elif self.settings.compiler == "Visual Studio":
             self.cpp_info.libs.extend(["ws2_32", "Iphlpapi", "Crypt32"])
