@@ -37,18 +37,23 @@ class FollyConan(ConanFile):
 
     def config_options(self):
         if self.settings.os == "Windows":
-            self.options.remove("fPIC")
+            del self.options.fPIC
+            del self.options.shared
 
     def configure(self):
-        # INFO: Folly requires C++17
+        # INFO: Folly is very limited on Windows
         compiler_version = Version(self.settings.compiler.version.value)
         if self.settings.os == "Windows" and \
             self.settings.compiler == "Visual Studio" and \
             compiler_version < "14":
             raise ConanInvalidConfiguration("Folly could not be built by Visual Studio < 14")
-        if self.settings.os == "Windows" and \
+        elif self.settings.os == "Windows" and \
             self.settings.arch != "x86_64":
             raise ConanInvalidConfiguration("Folly requires a 64bit target architecture")
+        elif self.settings.os == "Windows" and \
+             self.settings.compiler == "Visual Studio" and \
+             "MT" in self.settings.compiler.runtime:
+            raise ConanInvalidConfiguration("Folly could not be build with runtime MT")
         elif self.settings.os == "Linux" and \
             self.settings.compiler == "clang" and \
             compiler_version < "6.0":
@@ -57,6 +62,10 @@ class FollyConan(ConanFile):
             self.settings.compiler == "gcc" and \
             compiler_version < "5":
             raise ConanInvalidConfiguration("Folly could not be built by GCC < 5")
+        elif self.settings.os == "Macos" and \
+             self.settings.compiler == "apple-clang" and \
+             compiler_version < "9.0":
+            raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 9.0")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
