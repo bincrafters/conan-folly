@@ -31,7 +31,8 @@ class FollyConan(ConanFile):
         "lz4/1.8.3@bincrafters/stable",
         "OpenSSL/1.0.2p@conan/stable",
         "zlib/1.2.11@conan/stable",
-        "zstd/1.3.5@bincrafters/stable"
+        "zstd/1.3.5@bincrafters/stable",
+        "snappy/1.1.7@bincrafters/stable"
     )
     _source_subfolder = "source_subfolder"
 
