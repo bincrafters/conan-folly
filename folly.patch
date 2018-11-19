@@ -19,7 +19,7 @@ index b48157b..f31dc14 100644
  INCLUDE(SelectLibraryConfigurations)
  SELECT_LIBRARY_CONFIGURATIONS(LIBGFLAGS)
 diff --git a/CMake/FindGLog.cmake b/CMake/FindGLog.cmake
-index 4338159..d84ef50 100644
+index 4338159..516cbbd 100644
 --- a/CMake/FindGLog.cmake
 +++ b/CMake/FindGLog.cmake
 @@ -13,7 +13,7 @@ ENDIF ()
@@ -72,6 +72,25 @@ index 245bbe9..d88cfd9 100644
        -Wall
        -Wno-deprecated
        -Wno-deprecated-declarations
+diff --git a/CMake/FollyConfigChecks.cmake b/CMake/FollyConfigChecks.cmake
+index 3c2829c..2da4496 100644
+--- a/CMake/FollyConfigChecks.cmake
++++ b/CMake/FollyConfigChecks.cmake
+@@ -47,9 +47,11 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
+     list(APPEND FOLLY_CXX_FLAGS -Wno-inconsistent-missing-override)
+   endif()
+ 
+-  CHECK_CXX_COMPILER_FLAG(-faligned-new COMPILER_HAS_F_ALIGNED_NEW)
+-  if (COMPILER_HAS_F_ALIGNED_NEW)
+-    list(APPEND FOLLY_CXX_FLAGS -faligned-new)
++  if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR NOT CMAKE_CXX_COMPILER_VERSION STREQUAL "9.0")
++    CHECK_CXX_COMPILER_FLAG(-faligned-new COMPILER_HAS_F_ALIGNED_NEW)
++    if (COMPILER_HAS_F_ALIGNED_NEW)
++      list(APPEND FOLLY_CXX_FLAGS -faligned-new)
++    endif()
+   endif()
+ 
+   CHECK_CXX_COMPILER_FLAG(-fopenmp COMPILER_HAS_F_OPENMP)
 diff --git a/folly/CachelinePadded.h b/folly/CachelinePadded.h
 index cd4b4a6..2226b86 100644
 --- a/folly/CachelinePadded.h
