@@ -5,8 +5,9 @@
 #include <folly/futures/Future.h>
 #include <folly/executors/ThreadedExecutor.h>
 #include <folly/Uri.h>
+#include <folly/FBString.h>
 
-static void print_uri(const std::string& value) {
+static void print_uri(const folly::fbstring& value) {
     const folly::Uri uri(value);
     const auto authority = folly::format("The authority from {} is {}", value, uri.authority());
     std::cout << authority << std::endl;
