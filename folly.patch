@@ -19,7 +19,7 @@ index b48157b..f31dc14 100644
  INCLUDE(SelectLibraryConfigurations)
  SELECT_LIBRARY_CONFIGURATIONS(LIBGFLAGS)
 diff --git a/CMake/FindGLog.cmake b/CMake/FindGLog.cmake
-index 4338159..d84ef50 100644
+index 4338159..516cbbd 100644
 --- a/CMake/FindGLog.cmake
 +++ b/CMake/FindGLog.cmake
 @@ -13,7 +13,7 @@ ENDIF ()
@@ -45,7 +45,7 @@ index eca43a4..29836ff 100644
  if (LIBEVENT_LIB AND LIBEVENT_INCLUDE_DIR)
    set(LibEvent_FOUND TRUE)
 diff --git a/CMake/FollyCompilerUnix.cmake b/CMake/FollyCompilerUnix.cmake
-index 245bbe9..d88cfd9 100644
+index a9cc2c1..399d062 100644
 --- a/CMake/FollyCompilerUnix.cmake
 +++ b/CMake/FollyCompilerUnix.cmake
 @@ -14,9 +14,9 @@ set(
@@ -58,9 +58,9 @@ index 245bbe9..d88cfd9 100644
 -set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_COMMON} -O3")
 +set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_COMMON}")
  
+ # Note that CMAKE_REQUIRED_FLAGS must be a string, not a list
  set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -std=${CXX_STD}")
- function(apply_folly_compile_options_to_target THETARGET)
-@@ -28,11 +28,9 @@ function(apply_folly_compile_options_to_target THETARGET)
+@@ -30,11 +30,9 @@ function(apply_folly_compile_options_to_target THETARGET)
    )
    target_compile_options(${THETARGET}
      PRIVATE
