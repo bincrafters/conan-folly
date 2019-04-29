@@ -2,7 +2,7 @@
 
 | Bintray | Windows | Linux & macOS | 
 |:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/folly%3Abincrafters/images/download.svg)](https://bintray.com/bincrafters/public-conan/folly%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-folly?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-folly)|[![Build Status](https://travis-ci.org/bincrafters/conan-folly.svg?)](https://travis-ci.org/bincrafters/conan-folly)|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/folly%3Abincrafters/images/download.svg)](https://bintray.com/bincrafters/public-conan/folly%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-folly?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-folly)|[![Build Status](https://travis-ci.com/bincrafters/conan-folly.svg?)](https://travis-ci.com/bincrafters/conan-folly)|
 
 ## Conan.io Information
 

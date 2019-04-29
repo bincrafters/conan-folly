@@ -29,7 +29,7 @@ class FollyConan(ConanFile):
         "glog/20181109@bincrafters/stable",
         "libevent/2.1.8@bincrafters/stable",
         "lz4/1.8.3@bincrafters/stable",
-        "OpenSSL/1.0.2p@conan/stable",
+        "OpenSSL/1.0.2r@conan/stable",
         "zlib/1.2.11@conan/stable",
         "zstd/1.3.5@bincrafters/stable",
         "snappy/1.1.7@bincrafters/stable"
