@@ -3,13 +3,13 @@
 
 import os
 from conans import ConanFile, CMake, tools
-from conans.model.version import Version
+from conans.tools import Version
 from conans.errors import ConanInvalidConfiguration
 
 
 class FollyConan(ConanFile):
     name = "folly"
-    version = "2019.03.18.00"
+    version = "2019.09.02.00"
     description = "An open-source C++ components library developed and used at Facebook"
     topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     url = "https://github.com/bincrafters/conan-folly"
@@ -20,21 +20,28 @@ class FollyConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     exports = ["LICENSE.md"]
-    exports_sources = ["CMakeLists.txt", "folly.patch"]
+    exports_sources = ["CMakeLists.txt", "*.patch"]
     generators = "cmake"
     requires = (
-        "boost/1.67.0@conan/stable",
+        "boost/1.71.0@conan/stable",
         "double-conversion/3.1.1@bincrafters/stable",
         "gflags/2.2.1@bincrafters/stable",
         "glog/20181109@bincrafters/stable",
         "libevent/2.1.8@bincrafters/stable",
         "lz4/1.8.3@bincrafters/stable",
-        "OpenSSL/1.0.2r@conan/stable",
+        "OpenSSL/1.0.2s@conan/stable",
         "zlib/1.2.11@conan/stable",
-        "zstd/1.3.5@bincrafters/stable",
-        "snappy/1.1.7@bincrafters/stable"
+        "zstd/1.4.0@bincrafters/stable",
+        "snappy/1.1.7@bincrafters/stable",
+        "bzip2/1.0.8@conan/stable",
+        "libsodium/1.0.18@bincrafters/stable",
+        "lzma/5.2.4@bincrafters/stable",
+        "libdwarf/20190505@bincrafters/stable"
     )
-    _source_subfolder = "source_subfolder"
+
+    @property
+    def _source_subfolder(self):
+        return "source_subfolder"
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -69,6 +76,11 @@ class FollyConan(ConanFile):
              compiler_version < "8.0":
             raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
 
+    def requirements(self):
+        if self.settings.os == "Linux" or \
+           self.settings.compiler == "gcc":
+            self.requires("libiberty/9.1.0@bincrafters/stable")
+
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
         extracted_dir = self.name + '-' + self.version
@@ -80,7 +92,7 @@ class FollyConan(ConanFile):
         return cmake
 
     def build(self):
-        tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
+        tools.patch(base_path=self._source_subfolder, patch_file='0001-compiler-options.patch')
         cmake = self._configure_cmake()
         cmake.build()
 
@@ -90,7 +102,7 @@ class FollyConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.libs = tools.collect_libs(self) + ["folly"]
         if self.settings.os == "Linux":
             self.cpp_info.libs.extend(["pthread", "dl"])
         elif self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
