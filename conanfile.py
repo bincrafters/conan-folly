@@ -77,8 +77,10 @@ class FollyConan(ConanFile):
             raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
 
     def requirements(self):
+        if self.settings.os == "Linux":
+            self.requires("libunwind/1.3.1@bincrafters/stable")
         if self.settings.os == "Linux" or \
-           self.settings.compiler == "gcc":
+           self.settings.compiler == "gcc" and self.settings.os == "Windows":
             self.requires("libiberty/9.1.0@bincrafters/stable")
 
     def source(self):
