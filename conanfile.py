@@ -9,7 +9,7 @@ from conans.errors import ConanInvalidConfiguration
 
 class FollyConan(ConanFile):
     name = "folly"
-    version = "2019.09.02.00"
+    version = "2019.09.16.00"
     description = "An open-source C++ components library developed and used at Facebook"
     topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     url = "https://github.com/bincrafters/conan-folly"
@@ -84,7 +84,8 @@ class FollyConan(ConanFile):
             self.requires("libiberty/9.1.0@bincrafters/stable")
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
+        sha256 = "a212b49713e8efcfa3116cf2f702af313e755156f757459dd13ecf20608015aa"
+        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version), sha256=sha256)
         extracted_dir = self.name + '-' + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
