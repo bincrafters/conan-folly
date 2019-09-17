@@ -95,6 +95,7 @@ class FollyConan(ConanFile):
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='0001-compiler-options.patch')
+        tools.patch(base_path=self._source_subfolder, patch_file='0002-find-cmake.patch')
         cmake = self._configure_cmake()
         cmake.build()
 
