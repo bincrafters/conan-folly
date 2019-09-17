@@ -91,6 +91,8 @@ class FollyConan(ConanFile):
 
     def _configure_cmake(self):
         cmake = CMake(self)
+        if self.settings.os == "Linux":
+            cmake.definitions["CONAN_CXX_FLAGS"] = cmake.definitions.get("CONAN_CXX_FLAGS") + " -fpermissive"
         cmake.configure()
         return cmake
 
