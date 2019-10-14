@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import os
 from conans import ConanFile, CMake, tools
 from conans.tools import Version
@@ -23,19 +20,19 @@ class FollyConan(ConanFile):
     exports_sources = ["CMakeLists.txt", "*.patch"]
     generators = "cmake"
     requires = (
-        "boost/1.71.0@conan/stable",
-        "double-conversion/3.1.1@bincrafters/stable",
-        "gflags/2.2.1@bincrafters/stable",
+        "boost/1.71.0",
+        "double-conversion/3.1.5",
+        "gflags/2.2.2",
         "glog/20181109@bincrafters/stable",
-        "libevent/2.1.8@bincrafters/stable",
-        "lz4/1.8.3@bincrafters/stable",
-        "OpenSSL/1.0.2s@conan/stable",
-        "zlib/1.2.11@conan/stable",
-        "zstd/1.4.0@bincrafters/stable",
+        "libevent/2.1.11",
+        "lz4/1.9.2",
+        "openssl/1.0.2t",
+        "zlib/1.2.11",
+        "zstd/1.4.3",
         "snappy/1.1.7@bincrafters/stable",
-        "bzip2/1.0.8@conan/stable",
+        "bzip2/1.0.8",
         "libsodium/1.0.18@bincrafters/stable",
-        "lzma/5.2.4@bincrafters/stable",
+        "xz_utils/5.2.4",
         "libdwarf/20190505@bincrafters/stable"
     )
 
