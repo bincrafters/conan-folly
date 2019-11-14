@@ -11,7 +11,6 @@ class FollyConan(ConanFile):
     topics = ("conan", "folly", "facebook", "components", "core", "efficiency")
     url = "https://github.com/bincrafters/conan-folly"
     homepage = "https://github.com/facebook/folly"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "Apache-2.0"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False]}
@@ -23,7 +22,7 @@ class FollyConan(ConanFile):
         "boost/1.71.0",
         "double-conversion/3.1.5",
         "gflags/2.2.2",
-        "glog/20181109@bincrafters/stable",
+        "glog/0.4.0",
         "libevent/2.1.11",
         "lz4/1.9.2",
         "openssl/1.0.2t",
