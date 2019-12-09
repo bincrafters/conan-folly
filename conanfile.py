@@ -28,9 +28,9 @@ class FollyConan(ConanFile):
         "openssl/1.0.2t",
         "zlib/1.2.11",
         "zstd/1.4.3",
-        "snappy/1.1.7@bincrafters/stable",
+        "snappy/1.1.7",
         "bzip2/1.0.8",
-        "libsodium/1.0.18@bincrafters/stable",
+        "libsodium/1.0.18",
         "xz_utils/5.2.4",
         "libdwarf/20190505@bincrafters/stable"
     )
