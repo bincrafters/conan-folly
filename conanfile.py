@@ -32,7 +32,7 @@ class FollyConan(ConanFile):
         "bzip2/1.0.8",
         "libsodium/1.0.18",
         "xz_utils/5.2.4",
-        "libdwarf/20190505@bincrafters/stable"
+        "libdwarf/20191104"
     )
 
     @property
