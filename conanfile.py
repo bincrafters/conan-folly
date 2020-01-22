@@ -25,7 +25,7 @@ class FollyConan(ConanFile):
         "glog/0.4.0",
         "libevent/2.1.11",
         "lz4/1.9.2",
-        "openssl/1.0.2t",
+        "openssl/1.0.2u",
         "zlib/1.2.11",
         "zstd/1.4.3",
         "snappy/1.1.7",
@@ -75,7 +75,7 @@ class FollyConan(ConanFile):
     def requirements(self):
         if self.settings.os == "Linux" or \
            self.settings.compiler == "gcc":
-            self.requires("libiberty/9.1.0@bincrafters/stable")
+            self.requires("libiberty/9.1.0")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
