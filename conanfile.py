@@ -30,8 +30,8 @@ class FollyConan(ConanFile):
         "libevent/2.1.11",
         "lz4/1.9.2",
         "openssl/1.0.2u",
-        "zlib/1.2.11@",
-        "zstd/1.4.3",
+        "zlib/1.2.11",
+        "zstd/1.3.5",
         "snappy/1.1.7"
     )
     _source_subfolder = "source_subfolder"
@@ -65,8 +65,8 @@ class FollyConan(ConanFile):
             compiler_version < "5":
             raise ConanInvalidConfiguration("Folly could not be built by GCC < 5")
         elif self.settings.os == "Macos" and \
-             self.settings.compiler == "apple-clang" and \
-             compiler_version < "8.0":
+            self.settings.compiler == "apple-clang" and \
+            compiler_version < "8.0":
             raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
 
     def source(self):
