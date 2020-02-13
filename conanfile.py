@@ -96,7 +96,7 @@ class FollyConan(ConanFile):
         elif self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
             self.cpp_info.libs.extend(["ws2_32", "Iphlpapi", "Crypt32"])
         if (self.settings.os == "Linux" and self.settings.compiler == "clang" and
-           Version(self.settings.compiler.version.value) == "6" and self.settings.compiler.libcxx == "libstdc++") or \
+            self.settings.compiler.libcxx == "libstdc++") or \
            (self.settings.os == "Macos" and self.settings.compiler == "apple-clang" and
            Version(self.settings.compiler.version.value) == "9.0" and self.settings.compiler.libcxx == "libc++"):
             self.cpp_info.libs.append("atomic")
