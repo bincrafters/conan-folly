@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import os
@@ -20,7 +19,7 @@ class FollyConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     exports = ["LICENSE.md"]
-    exports_sources = ["CMakeLists.txt", "folly.patch"]
+    exports_sources = ["CMakeLists.txt", "patches/*"]
     generators = "cmake"
     requires = (
         "boost/1.72.0",
@@ -70,8 +69,8 @@ class FollyConan(ConanFile):
             raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
-        extracted_dir = self.name + '-' + self.version
+        tools.get(**self.conan_data["sources"][self.version])
+        extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
     def _configure_cmake(self):
@@ -80,7 +79,8 @@ class FollyConan(ConanFile):
         return cmake
 
     def build(self):
-        tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
+        for patch in self.conan_data["patches"][self.version]:
+            tools.patch(**patch)
         cmake = self._configure_cmake()
         cmake.build()
 
