@@ -59,8 +59,6 @@ jobs:
       fail-fast: false
       matrix:
         compiler:
-        - { name: "GCC", version: "4.9", buildType: "Debug"     }
-        - { name: "GCC", version: "4.9", buildType: "Release"   }
         - { name: "GCC", version: "5", buildType: "Debug"       }
         - { name: "GCC", version: "5", buildType: "Release"     }
         - { name: "GCC", version: "6", buildType: "Debug"       }
@@ -71,12 +69,6 @@ jobs:
         - { name: "GCC", version: "8", buildType: "Release"     }
         - { name: "GCC", version: "9", buildType: "Debug"       }
         - { name: "GCC", version: "9", buildType: "Release"     }
-        - { name: "CLANG", version: "3.9", buildType: "Debug"   }
-        - { name: "CLANG", version: "3.9", buildType: "Release" }
-        - { name: "CLANG", version: "4.0", buildType: "Debug"   }
-        - { name: "CLANG", version: "4.0", buildType: "Release" }
-        - { name: "CLANG", version: "5.0", buildType: "Debug"   }
-        - { name: "CLANG", version: "5.0", buildType: "Release" }
         - { name: "CLANG", version: "6.0", buildType: "Debug"   }
         - { name: "CLANG", version: "6.0", buildType: "Release" }
         - { name: "CLANG", version: "7.0", buildType: "Debug"   }
