@@ -1,0 +1,8 @@
+sources:
+  "2018.11.12.00":
+    url: "https://github.com/facebook/folly/archive/v2018.11.12.00.tar.gz"
+    sha256: "c05ff9ac9796cec9d02e00e14d593047b19de1e2a08d91c69cbf2fe53708662f"
+patches:
+  "2018.11.12.00":
+    - patch_file: "patches/folly.patch"
+      base_path: "source_subfolder"
